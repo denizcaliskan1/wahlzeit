@@ -66,7 +66,7 @@ public class Photo extends DataObject {
 	public static final int MAX_PHOTO_HEIGHT = 600;
 	public static final int MAX_THUMB_PHOTO_WIDTH = 105;
 	public static final int MAX_THUMB_PHOTO_HEIGHT = 150;
-
+	
 	protected PhotoId id = null;
 	
 	/**
@@ -131,12 +131,16 @@ public class Photo extends DataObject {
 	@Parent
 	Key parent = ObjectManager.applicationRootKey;
 
+	
+	private Location location;
+	
 	/**
 	 *
 	 */
 	public Photo() {
 		id = PhotoId.getNextId();
 		incWriteCount();
+		location = new Location();
 	}
 
 	/**
@@ -146,6 +150,7 @@ public class Photo extends DataObject {
 		id = myId;
 
 		incWriteCount();
+		location = new Location();
 	}
 
 	/**
@@ -418,4 +423,13 @@ public class Photo extends DataObject {
 		noVotesAtLastNotification = noVotes;
 		incWriteCount();
 	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
 }
