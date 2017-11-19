@@ -10,4 +10,11 @@ public class MountainsPhotoManager extends PhotoManager {
 	public MountainsPhotoManager() {
 		super();
 	}
+	
+	/**
+	 *
+	 */
+	public static MountainsPhotoManager getInstance() {
+		return instance;
+	}
 }

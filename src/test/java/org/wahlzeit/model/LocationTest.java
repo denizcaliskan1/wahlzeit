@@ -17,7 +17,7 @@ public class LocationTest {
 	
 	@Test
 	public void coordinatesExistAndSetToOrigin() {
-		Coordinate c = new Coordinate(0,0,0);
+		Coordinate c = new CartesianCoordinate(0,0,0);
 		assertTrue(c.isEqual(l.getCoordinates()));
 	}
 	

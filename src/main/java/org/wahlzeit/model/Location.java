@@ -2,13 +2,13 @@ package org.wahlzeit.model;
 
 public class Location {
 
-	private Coordinate coordinates;
+	private CartesianCoordinate coordinates;
 
 	public Location() {
-		this(new Coordinate());
+		this(new CartesianCoordinate());
 	}
 
-	public Location(Coordinate coordinates) {
+	public Location(CartesianCoordinate coordinates) {
 		this.coordinates = coordinates;
 	}
 	
@@ -17,7 +17,7 @@ public class Location {
 		return coordinates;
 	}
 
-	public void setCoordinates(Coordinate coordinates) {
+	public void setCoordinates(CartesianCoordinate coordinates) {
 		this.coordinates = coordinates;
 	}
 	

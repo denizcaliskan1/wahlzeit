@@ -49,6 +49,9 @@ public class MountainsPhotoFactory extends PhotoFactory {
 	public MountainsPhoto createPhoto() {
 		return new MountainsPhoto();
 	}
+	public MountainsPhoto createPhoto(PhotoId id) {
+		return new MountainsPhoto(id);
+	}
 	public MountainsPhoto createPhoto(int height, PhotoId id) {
 		return new MountainsPhoto(height,id);
 	}

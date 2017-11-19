@@ -21,6 +21,9 @@
 package org.wahlzeit.main;
 
 import org.wahlzeit.model.GlobalsManager;
+import org.wahlzeit.model.MountainsPhoto;
+import org.wahlzeit.model.MountainsPhotoFactory;
+import org.wahlzeit.model.MountainsPhotoManager;
 import org.wahlzeit.model.PhotoCaseManager;
 import org.wahlzeit.model.PhotoFactory;
 import org.wahlzeit.model.PhotoManager;
@@ -97,7 +100,7 @@ public abstract class ModelMain extends AbstractMain {
 		File photoDirFile = new File(photoDir);
 		FileFilter photoFileFilter = new FileFilter() {
 			public boolean accept(File file) {
-				//TODO: check and change
+				//TODO: check and return file.getName().endsWith(".jpg");change
 				return file.getName().endsWith(".jpg");
 			}
 		};
