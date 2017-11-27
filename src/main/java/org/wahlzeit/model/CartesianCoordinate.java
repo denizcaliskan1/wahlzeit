@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
 	private double x,y,z;
 	
@@ -12,16 +12,10 @@ public class CartesianCoordinate implements Coordinate {
 		this.y = y;
 		this.z = z;
 	}
-	
-	
+		
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
 		return this;
-	}
-
-	@Override
-	public double getCartesianDistance(Coordinate c) {
-		return c.asCartesianCoordinate().getDistance(this);
 	}
 
 	@Override
@@ -38,11 +32,6 @@ public class CartesianCoordinate implements Coordinate {
 	}
 
 	@Override
-	public double getSphericDistance(Coordinate c) {
-		return this.getDistance(c.asCartesianCoordinate());
-	}
-
-	@Override
 	public double getDistance(Coordinate c) {
 		return doGetDistance(c.asCartesianCoordinate());
 	}
@@ -54,46 +43,6 @@ public class CartesianCoordinate implements Coordinate {
 		double dz = Math.pow(z-c.z, 2);
 		
 		return Math.sqrt(dx+dy+dz);
-	}
-	
-	@Override
-	public boolean isEqual(Coordinate c) {
-		
-		CartesianCoordinate other = c.asCartesianCoordinate();
-		
-		if(Double.doubleToLongBits(other.x) != Double.doubleToLongBits(x))return false;
-		if(Double.doubleToLongBits(other.y) != Double.doubleToLongBits(y))return false;
-		if(Double.doubleToLongBits(other.z) != Double.doubleToLongBits(z))return false;
-		
-		return true;
-	}
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(x);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(y);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(z);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Coordinate other = (Coordinate) obj;
-		
-		return isEqual(other);
 	}
 	
 	public double getX() {
