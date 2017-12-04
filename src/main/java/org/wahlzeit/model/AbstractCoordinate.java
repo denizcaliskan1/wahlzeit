@@ -5,12 +5,37 @@ public abstract class AbstractCoordinate implements Coordinate{
 
 	@Override
 	public double getCartesianDistance(Coordinate c) {
-		return this.asCartesianCoordinate().getDistance(c);
+		
+		assertClassInvariants();
+		
+		//precondition
+		assertIsNotNull(c);
+		
+		double d = this.asCartesianCoordinate().getDistance(c);
+		
+		//postcondition
+		assertIsPositive(d);
+		
+		assertClassInvariants();
+		return d;
 	}
 
 	@Override
 	public double getSphericDistance(Coordinate c) {
-		return this.asSphericCoordinate().getDistance(c);
+		
+		assertClassInvariants();
+		
+		//precondition
+		assertIsNotNull(c);
+		
+		double d = this.asSphericCoordinate().getDistance(c);
+		
+		//postcondition
+		assertIsPositive(d);
+		
+		assertClassInvariants();
+		
+		return d;
 	}
 
 	@Override
@@ -55,5 +80,13 @@ public abstract class AbstractCoordinate implements Coordinate{
 		
 		return isEqual(other);
 	}
-
+	
+	protected abstract void assertClassInvariants();
+	
+	protected void assertIsNotNull(Coordinate c) {
+		assert c != null;
+	}
+	protected void assertIsPositive( double d ) {
+		assert d >= 0;
+	}
 }

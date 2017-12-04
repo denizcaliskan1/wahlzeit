@@ -17,20 +17,34 @@ public class SphericCoordinate extends AbstractCoordinate {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.radius = radius; 
+		
+		assertClassInvariants();
 	}
 	
 	@Override
 	public CartesianCoordinate asCartesianCoordinate() {
 		
+		CartesianCoordinate c;
+		
+		assertClassInvariants();
+		
 		if( radius == 0 ) {
-			return new CartesianCoordinate();
+			c = new CartesianCoordinate();
+			
+			assertIsNotNull(c);
+			assertClassInvariants();
+			return c;
 		}
 		
 		double x = radius * Math.sin(longitude) * Math.cos(latitude);
 		double y = radius * Math.sin(longitude) * Math.sin(latitude);
 		double z = radius * Math.cos(longitude);
 		
-		return new CartesianCoordinate(x,y,z);
+		c = new CartesianCoordinate(x,y,z);
+		
+		assertIsNotNull(c);
+		assertClassInvariants();
+		return c;
 	}
 
 	@Override
@@ -72,4 +86,11 @@ public class SphericCoordinate extends AbstractCoordinate {
 	public void setRadius(double radius) {
 		this.radius = radius;
 	}
+	@Override
+	protected void assertClassInvariants() {
+		assert !Double.isNaN(radius);
+		assert !Double.isNaN(latitude);
+		assert !Double.isNaN(longitude);
+	}
+	
 }

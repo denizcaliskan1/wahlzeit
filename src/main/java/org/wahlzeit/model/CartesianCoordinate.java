@@ -7,10 +7,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	public CartesianCoordinate() {
 		this(0,0,0);
 	}
+	public CartesianCoordinate( double x, double y) {
+		this(x,y,0);
+	}
 	public CartesianCoordinate(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		
+		assertClassInvariants();
 	}
 		
 	@Override
@@ -21,14 +26,28 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	@Override
 	public SphericCoordinate asSphericCoordinate() {
 		
+		assertClassInvariants();
+		
+		SphericCoordinate c;
+		
 		double radius = Math.sqrt(x*x + y*y + z*z);
 		
-		if(radius == 0)return new SphericCoordinate();
+		if(radius == 0) {
+			c = new SphericCoordinate();
+			
+			assertIsNotNull(c);
+			assertClassInvariants();
+			return c;
+		}
 		
 		double latitude = Math.atan2(y, x);
 		double longitude = Math.acos(z/radius);
 		
-		return new SphericCoordinate(latitude,longitude,radius);
+		c = new SphericCoordinate(latitude,longitude,radius);
+		
+		assertIsNotNull(c);
+		assertClassInvariants();
+		return c;
 	}
 
 	@Override
@@ -63,6 +82,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	public void setZ(double z) {
 		this.z = z;
 	}
-
 	
+	@Override
+	protected void assertClassInvariants() {
+		assert !Double.isNaN(x);
+		assert !Double.isNaN(y);
+		assert !Double.isNaN(z);
+	}
 }
