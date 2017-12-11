@@ -18,7 +18,13 @@ public class MountainsPhoto extends Photo {
 	}
 
 	public MountainsPhoto(int height, PhotoId id) {
+		
 		super(id);
+		
+		if( height < 0 ) {
+			throw new IllegalArgumentException("Height of a Mountain can not be below zero!");
+		}
+		
 		this.height = height;
 	}
 

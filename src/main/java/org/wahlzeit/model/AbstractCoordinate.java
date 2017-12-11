@@ -43,6 +43,8 @@ public abstract class AbstractCoordinate implements Coordinate{
 		
 		CartesianCoordinate other = c.asCartesianCoordinate();
 		
+		assertIsNotNull(other);
+		
 		if(Double.doubleToLongBits(other.getX()) != Double.doubleToLongBits(this.asCartesianCoordinate().getX()))
 			return false;
 		if(Double.doubleToLongBits(other.getY()) != Double.doubleToLongBits(this.asCartesianCoordinate().getX()))
@@ -84,8 +86,20 @@ public abstract class AbstractCoordinate implements Coordinate{
 	protected abstract void assertClassInvariants();
 	
 	protected void assertIsNotNull(Coordinate c) {
-		assert c != null;
+		if(c == null) {
+			throw new IllegalArgumentException("Coordinate must not be null.");
+		}
 	}
+	
+	protected void assertNotOverflowed(double d) {
+		if( d == Double.POSITIVE_INFINITY) {
+			throw new ArithmeticException("Double overflowed!");
+		}
+		if( d == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Double overflowed!");
+		}
+	}
+	
 	protected void assertIsPositive( double d ) {
 		assert d >= 0;
 	}

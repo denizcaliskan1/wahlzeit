@@ -11,6 +11,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		this(x,y,0);
 	}
 	public CartesianCoordinate(double x, double y, double z) {
+		
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -42,6 +43,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
 		
 		double latitude = Math.atan2(y, x);
 		double longitude = Math.acos(z/radius);
+		
+		assertNotOverflowed(latitude);
+		assertNotOverflowed(longitude);
 		
 		c = new SphericCoordinate(latitude,longitude,radius);
 		

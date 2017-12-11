@@ -9,6 +9,11 @@ public class Location {
 	}
 
 	public Location(CartesianCoordinate coordinates) {
+		
+		if( coordinates == null) {
+			throw new IllegalArgumentException("Coordinate must not be null.");
+		}
+		
 		this.coordinates = coordinates;
 	}
 	

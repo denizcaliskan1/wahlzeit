@@ -91,6 +91,12 @@ public class SphericCoordinate extends AbstractCoordinate {
 		assert !Double.isNaN(radius);
 		assert !Double.isNaN(latitude);
 		assert !Double.isNaN(longitude);
+		
+		assert latitude >= -90;
+		assert latitude <= 90;
+		
+		assert longitude >= -180;
+		assert longitude <= 180;
 	}
 	
 }
