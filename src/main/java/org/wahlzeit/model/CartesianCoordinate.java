@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 public class CartesianCoordinate extends AbstractCoordinate {
 
-	private double x,y,z;
+	private final double x,y,z;
 	
 	public CartesianCoordinate() {
 		this(0,0,0);
@@ -71,20 +71,20 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	public double getX() {
 		return x;
 	}
-	public void setX(double x) {
-		this.x = x;
+	public CartesianCoordinate setX(double x) {
+		return new CartesianCoordinate(x, this.y,this.z);
 	}
 	public double getY() {
 		return y;
 	}
-	public void setY(double y) {
-		this.y = y;
+	public CartesianCoordinate setY(double y) {
+		return new CartesianCoordinate(this.x,y,this.z);
 	}
 	public double getZ() {
 		return z;
 	}
-	public void setZ(double z) {
-		this.z = z;
+	public CartesianCoordinate setZ(double z) {
+		return new CartesianCoordinate(this.x,this.y,z);
 	}
 	
 	@Override

@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 public class SphericCoordinate extends AbstractCoordinate {
 
-	private double latitude,longitude,radius;
+	private final double latitude,longitude,radius;
 	
 	private final static double rEarth = 6371.0;
 	
@@ -71,20 +71,20 @@ public class SphericCoordinate extends AbstractCoordinate {
 	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public SphericCoordinate setLatitude(double latitude) {
+		return new SphericCoordinate(latitude, this.longitude,this.radius);
 	}
 	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public SphericCoordinate setLongitude(double longitude) {
+		return new SphericCoordinate(this.latitude,longitude,this.radius);
 	}
 	public double getRadius() {
 		return radius;
 	}
-	public void setRadius(double radius) {
-		this.radius = radius;
+	public SphericCoordinate setRadius(double radius) {
+		return new SphericCoordinate(this.latitude,this.longitude,radius);
 	}
 	@Override
 	protected void assertClassInvariants() {
