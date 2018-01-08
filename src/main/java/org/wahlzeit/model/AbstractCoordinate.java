@@ -1,5 +1,13 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.DesignPattern;
+
+@DesignPattern(
+		name = "Bridge",
+		participants = {"AbstractCoordinate"}
+		)
+
+
 public abstract class AbstractCoordinate implements Coordinate{
 
 
@@ -58,14 +66,20 @@ public abstract class AbstractCoordinate implements Coordinate{
 	
 	@Override
 	public int hashCode() {
+		return generateHashCode(this.asCartesianCoordinate().getX(),
+				this.asCartesianCoordinate().getY(),this.asCartesianCoordinate().getZ());
+	}
+	
+	private static int generateHashCode(double x, double y, double z) {
+		
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(this.asCartesianCoordinate().getX());
+		temp = Double.doubleToLongBits(x);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(this.asCartesianCoordinate().getY());
+		temp = Double.doubleToLongBits(y);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(this.asCartesianCoordinate().getZ());
+		temp = Double.doubleToLongBits(z);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}

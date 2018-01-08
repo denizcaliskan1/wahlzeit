@@ -1,5 +1,12 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.DesignPattern;
+
+@DesignPattern(
+		name = "Value Object",
+		participants = {"SphericCoordinate"}
+		)
+
 public class SphericCoordinate extends AbstractCoordinate {
 
 	private final double latitude,longitude,radius;
