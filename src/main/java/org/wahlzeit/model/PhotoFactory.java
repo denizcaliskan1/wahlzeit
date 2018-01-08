@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 
 @DesignPattern(
 		name = "Abstract Factory",
-		participants = {"PhotoFactory"}
+		participants = {"PhotoFactory","MountainsPhotoFactory"}
 		)
 
 /**
