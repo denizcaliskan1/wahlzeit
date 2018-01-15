@@ -7,32 +7,32 @@ import com.googlecode.objectify.annotation.Subclass;
 @Subclass
 public class MountainsPhoto extends Photo {
 	
-	private int height;
+	private Mountains mountains;
 	
 	public MountainsPhoto() {
-		this(0,PhotoId.getNextId());
+		super(PhotoId.getNextId());
 	}
 	
 	public MountainsPhoto(PhotoId id) {
-		this(0,id);
+		super(id);
+	}
+	
+	public MountainsPhoto(MountainsType type) {
+		super();
+		Mountains m = MountainsManager.getInstance().createMountains(type);
+		this.mountains = m;
 	}
 
-	public MountainsPhoto(int height, PhotoId id) {
+	public MountainsPhoto(Mountains mountains) {
+		super();
+		this.mountains = mountains;
+	}
+	
+	public MountainsPhoto(Mountains mountains, PhotoId id) {
 		
 		super(id);
 		
-		if( height < 0 ) {
-			throw new IllegalArgumentException("Height of a Mountain can not be below zero!");
-		}
-		
-		this.height = height;
+		this.mountains = mountains;
 	}
 
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 }
